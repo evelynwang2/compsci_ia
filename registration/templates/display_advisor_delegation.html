@@ -26,15 +26,15 @@
             <li class="list-group-item">
               <a href="{% url 'displayDelegate' delegation.team.delegate1.id %}">{{delegation.team.delegate1.firstName}} {{delegation.team.delegate1.lastName}}</a>
             </li>
-            {% if delegation.gelegate2 %}
+            {% if delegation.team.delegate2 %}
             <li class="list-group-item">
               <a href="{% url 'displayDelegate' delegation.team.delegate2.id %}">{{delegation.team.delegate2.firstName}} {{delegation.team.delegate2.lastName}}</a>
             </li>
-              {% if delegation.gelegate3 %}
+              {% if delegation.team.delegate3 %}
             <li class="list-group-item">
               <a href="{% url 'displayDelegate' delegation.team.delegate3.id %}">{{delegation.team.delegate3.firstName}} {{delegation.team.delegate3.lastName}}</a>
             </li>
-                {% if delegation.gelegate4 %}
+                {% if delegation.team.deleegate4 %}
             <li class="list-group-item"><a href="{% url 'displayDelegate' delegation.team.delegate4.id %}">{{delegation.team.delegate4.firstName}} {{delegation.team.delegate4.lastName}}</a>
             </li>
                 {% endif %}
