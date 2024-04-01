@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-8">
+      <div class="card-body">
+      <h5 class="card-title">Delegate Information</h5>
+      <p class="card-text">id: {{ delegate.id }} </p>
+      <p class="card-text">Name: {{ delegate.firstName }} {{ delegate.lastName }}</p>
+      <p class="card-text">School: {{ delegate.school }}</p>
+      <p class="card-text">Role: {{ delegate.role }}</p>
+      <p class="card-text">Gender: {{ delegate.gender }}</p>
+      <p class="card-text">Race: {{ delegate.race }}</p>
+      <p class="card-text">Grade: {{ delegate.grade }}</p>
+      <p class="card-text">Address: {{ delegate.streetAddr }} {{ delegate.city }}, {{ delegate.state }}  {{ delegate.zip }}</p>
+      <p class="card-text">Phone: {{ delegate.mobilePhone }}</p>
+      <p class="card-text">Email: {{ delegate.email }}</p>
+      <p class="card-text">Parent Name: {{ delegate.parentName }}</p>
+      <p class="card-text">Parent Email: {{ delegate.parentEmail }}</p>
+      <p class="card-text">Parent Phone: {{ delegate.parentPhone }}</p>
+    </div>
+  </div>
+</div>
+{% endblock content %}

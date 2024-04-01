@@ -1,0 +1,180 @@
+  {% extends 'base.html' %}
+  {% block content %}
+    <div class="card mb-3">
+      <div class="row g-0">
+        <div>
+          <div class="card-body">
+          <h5 class="card-title">MUN A General Assembly Registration Form - Individual</h5>
+            {% if error %}
+              {% for error in errors %}
+                <div class="alert alert-danger mt-3" role="alert">
+                  {{ error }} is required
+                </div>
+              {% endfor %}
+            {% endif %}
+
+          <p class="card-text">
+            <form id="formInd" action="{% url 'registrationInd' %}" method="post" onsubmit="return validateForm()">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <!-- select school first -->
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-6">
+                    <div class="input-group mb-4">
+                      <label for="inputSchool" class="input-group-text">School</label>
+                      <select class="form-select" id="inputSchool" name="school" required>
+                        <option selected>Choose...</option>
+                          {% for school in schools %}
+                          <option value="{{ school.id }}">{{ school.name }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+  
+                  <div class="col-md-6">
+                    <div class="input-group mb-4">
+                      <label for="inputSchool" class="input-group-text">Role</label>
+                      <select class="form-select" id="inputRole" name="role" required>
+                        <option selected>Choose...</option>
+                        <option value="officer">Officer</option>
+                        <option value="ICJ">ICJ</option>
+                        <option value="Press">Press</option>
+                        <option value="Security Council">Security Council</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- individual form -->
+              <div class="container bg-opacity-25">
+                <div class="row g-3">   
+                  <div class="col-md-6">
+                    <label for="inputFirstName" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="inputFirstName" name="fname" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputLastName" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="inputLastName" name="lname" required>
+                    </div>
+                  <div class="col-md-3">
+                    <label for="inputGender" class="form-label">Gender</label>
+                    <select class="form-select" id="inputGender" name="gender" required>
+                      <option selected>Choose...</option>
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
+                    </select>
+                  </div>    
+                  <div class="col-md-3">
+                    <label for="inputRace" class="form-label">Race</label>
+                    <select class="form-select" id="inputRace" name="race" required>
+                      <option selected>Choose...</option>
+                      {% for race in races %}
+                        <option value="{{ race.id }}">{{ race.race }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>    
+                  <div class="col-md-3">
+                    <label for="inputGrade" class="form-label">Grade</label>
+                    <select class="form-select" id="inputGrade" name="grade" required>
+                      <option selected>Choose...</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                    </select>
+                  </div>      
+                  <div class="col-md-6">
+                    <label for="inputEmail1" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="inputEmail1" name="email" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputPhone" class="form-label">Cell Phone</label>
+                    <input type="text" class="form-control" id="inputPhone" name="phone" placeholder="(123) 456-7890" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="inputStreetAddr" class="form-label">Address</label>
+                    <input type="text" class="form-control" id="inputStreetAddr" name="addr" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputCity" class="form-label">City</label>
+                    <input type="text" class="form-control" id="inputCity" name="city" required>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="inputState" class="form-label">State</label>
+                    <select class="form-select" id="inputState" name="state" required>
+                      <option selected>Choose...</option>
+                      {% for state in states %}
+                        <option value="{{ state.id }}">{{ state.stateNameLong }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="inputZip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="inputZip" name="zip" required>
+                  </div>
+                  <div class="col-12">
+                    <label for="inputParentName" class="form-label">Parent Name</label>
+                    <input type="text" class="form-control" id="inputParentName" name="parentName" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputParentEmail" class="form-label">Parent Email</label>
+                    <input type="email" class="form-control" id="inputParentEmail" name="parentEmail" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputParentPhone" class="form-label">Parent Phone</label>
+                    <input type="text" class="form-control" id="inputParentPhone" name="parentPhone" placeholder="(987) 654-3210" required>
+                  </div>     
+                </div>
+              </div>
+              <br>
+
+              <!-- individual agrement-->
+              <div class="container">
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" name="gridCheck" required>
+                    <label class="form-check-label" for="gridCheck">
+                      I Agree
+                    </label>
+                  </div>
+                </div>  
+                <div class="text-lg-start lh-sm fs-6 text-wrap fw-bold">
+                  By clicking this box, all delegates listed on this registration form certify they will attend Model United Nations and agree to the following <a href="https://tennesseecce.org/Resources/CodeofConduct.pdf">Code of Conduct</a>. Should any delegate choose to withdraw after the Final Deadline, that delegate is responsible for their delegate fee and other school costs or for finding a substitute.
+                </div>
+                <br>
+                <br>
+                <div class="text-lg-start lh-sm fs-6 text-wrap">
+                  Please note, the information contained in this form will be sent for verification to all of the email addresses (parent and student) provided in the form above.
+                </div>
+                <br>
+                <div class="text-lg-start lh-sm fs-6 text-wrap">
+                  After pressing submit, scroll up to see if you have incorrectly completed any fields (they will be highlighted in red).
+                </div>
+                <br>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+              <script>
+                // Check if the checkbox is checked
+                function validateForm() {
+                  // check if the checkbox is checked
+                  var checkBox = document.getElementById("gridCheck");
+                  if (checkBox.checked == false) {
+                     // If checkbox is not checked, prevent form submission
+                    alert("Please check the AGREE before submitting the form.");
+                    return false;
+                  }
+                  // If checkbox is checked, allow form submission
+                  return true;
+               }
+              </script>
+            </form>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {% endblock content %}

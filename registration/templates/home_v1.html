@@ -1,0 +1,349 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form>
+    <!-- select school first -->
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-4">
+          <label for="inputSchool" class="input-group-text">School</label>
+          <select class="form-select" id="inputSchool">
+            <option selected>Choose...</option>
+              {% for school in schools %}
+                <option value="{{ school.id }}">{{ school.name }}</option>
+              {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- select 10 countries -->
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Country Choice 1</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect02">Country Choice 2</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div> 
+
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect03">Country Choice 3</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect04">Country Choice 4</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+      
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect05">Country Choice 5</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect06">Country Choice 6</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+           </select>
+        </div>
+      </div>
+    </div>
+      
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect07">Country Choice 7</label>
+          <select class="form-select" id="inputGroupSelect01">
+           <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }}">{{ country.name }}</option>
+            {% endfor %}
+           </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect08">Country Choice 8</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }} ">{{ country.name }}</option>
+            {% endfor %}
+           </select>
+        </div>
+      </div>
+    </div>
+      
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect09">Country Choice 9</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }} ">{{ country.name }}</option>
+            {% endfor %}
+           </select>
+        </div>
+      </div>
+      <div class="col">
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect10">Country Choice 10</label>
+          <select class="form-select" id="inputGroupSelect01">
+            <option selected>Choose...</option>
+            {% for country in countries %}
+              <option value="{{ country.id }} ">{{ country.name }}</option>
+            {% endfor %}
+           </select>
+        </div>
+      </div>
+    </div>
+    <!-- instruction #2 -->
+    <div class="container">
+        <div class="text-lg-start lh-sm fs-5 text-wrap fw-bold">
+          <p></p>
+          <p>
+              Delegations will consist of 4 students. In cases of odd numbers, some countries may have only 3 delegates, however, delegations of 5 are not permitted.
+          </p>
+          <p>
+              NOTE: Please use the following format for phone numbers: (123)SPACE456-7890
+          </p>
+          <p class="lh-sm"></p>
+        </div>
+      </div>
+  
+      <!-- deligate intake -->
+      <br>
+      <div class="container bg-danger bg-opacity-25">
+        <div class="row g-3">   
+          <label class="fs-5 fw-bold" bgcolor="secondary">Deligate #1</label>
+          <hr>
+          <div class="col-md-6">
+            <label for="inputFirstName1" class="form-label">First name</label>
+            <input type="text" class="form-control" id="inputFirstName1">
+          </div>
+          <div class="col-md-6">
+            <label for="inputLastName1" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="inputLastName1">
+          </div>
+          <div class="col-md-3">
+            <label for="inputGender1" class="form-label">Gender</label>
+            <select class="form-select" id="inputGender1">
+              <option selected>Choose...</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>    
+          <div class="col-md-3">
+            <label for="inputRace1" class="form-label">Race</label>
+            <select class="form-select" id="inputRace1">
+              <option selected>Choose...</option>
+              {% for race in races %}
+              <option value="{{ race.id }}">{{ race.race }}</option>
+              {% endfor %}
+            </select>
+          </div>    
+          <div class="col-md-3">
+            <label for="inputGrade1" class="form-label">Grade</label>
+            <select class="form-select" id="inputGrade1">
+              <option selected>Choose...</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>    
+          <div class="col-md-3">
+            <label for="inputMunYear1" class="form-label">Years at MUN</label>
+            <select class="form-select" id="inputMunYear1">
+              <option selected>Choose...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="3">4</option>
+            </select>
+          </div>    
+          <div class="col-md-6">
+            <label for="inputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail1" placeholder="john.smith@email.com">
+          </div>
+          <div class="col-md-6">
+            <label for="inputPhone1" class="form-label">Cell Phone</label>
+            <input type="text" class="form-control" id="inputPhone1" placeholder="(123) 456-7890">
+          </div>
+          <div class="col-12">
+            <label for="inputStreetAddr1" class="form-label">Address</label>
+            <input type="text" class="form-control" id="inputStreetAddr1" placeholder="1234 Main St">
+          </div>
+          <div class="col-md-6">
+            <label for="inputCity1" class="form-label">City</label>
+            <input type="text" class="form-control" id="inputCity1">
+          </div>
+          <div class="col-md-4">
+            <label for="inputState1" class="form-label">State</label>
+            <select class="form-select" id="inputState1">
+              <option selected>Choose...</option>
+              {% for state in states %}
+              <option value="{{ state.id }}">{{ state.stateNameLong }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="inputZip1" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="inputZip1">
+          </div>
+          <div class="col-12">
+            <label for="inputParentName1" class="form-label">Parent Names</label>
+            <input type="text" class="form-control" id="inputParentName1">
+          </div>
+          <div class="col-md-6">
+            <label for="inputParentEmail1" class="form-label">Parent Email</label>
+            <input type="email" class="form-control" id="inputParentEmail1" placeholder="mary.smith@email.com">
+          </div>
+          <div class="col-md-6">
+            <label for="inputParentPhone1" class="form-label">Parent Phone</label>
+            <input type="text" class="form-control" id="inputPhone1" placeholder="(987) 654-3210">
+          </div>     
+        </div>
+      </div>
+      <br><br>
+
+      <div class="container bg-info bg-opacity-25">
+        <div class="row g-3">   
+          <label class="fs-5 fw-bold" bgcolor="secondary">Delegate #2</label>
+          <hr>
+          <div class="col-md-6">
+            <label for="inputFirstName2" class="form-label">First name</label>
+            <input type="text" class="form-control" id="inputFirstName2">
+          </div>
+          <div class="col-md-6">
+            <label for="inputLastName2" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="inputLastName2">
+          </div>
+          <div class="col-md-3">
+            <label for="inputGender2" class="form-label">Gender</label>
+            <select  class="form-select" id="inputGender2">
+              <option selected>Choose...</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>    
+          <div class="col-md-3">
+            <label for="inputRace2" class="form-label">Race</label>
+            <select class="form-select" id="inputRace2">
+              <option selected>Choose...</option>
+              {% for race in races %}
+              <option value="{{ race.id }}">{{ race.race }}</option>
+              {% endfor %}
+            </select>
+          </div>    
+          <div class="col-md-3">
+            <label for="inputGrade2" class="form-label">Grade</label>
+            <select class="form-select" id="inputGrade2">
+              <option selected>Choose...</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select>
+          </div>    
+          <div class="col-md-3">
+            <label for="inputMunYear2" class="form-label">Years at MUN</label>
+            <select class="form-select" id="inputMunYear2" >
+              <option selected>Choose...</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="3">4</option>
+            </select>
+          </div>    
+          <div class="col-md-6">
+            <label for="inputEmail2" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail2" placeholder="john.smith@email.com">
+          </div>
+          <div class="col-md-6">
+            <label for="inputPhone2" class="form-label">Cell Phone</label>
+            <input type="text" class="form-control" id="inputPhone2" placeholder="(123) 456-7890">
+          </div>
+          <div class="col-12">
+            <label for="inputStreetAddr2" class="form-label">Address</label>
+            <input type="text" class="form-control" id="inputStreetAddr2" placeholder="1234 Main St">
+          </div>
+          <div class="col-md-6">
+            <label for="inputCity2" class="form-label">City</label>
+            <input type="text" class="form-control" id="inputCity2">
+          </div>
+          <div class="col-md-4">
+            <label for="inputState2" class="form-label">State</label>
+            <select class="form-select" id="inputState2">
+              <option selected>Choose...</option>
+              {% for state in states %}
+              <option value="{{ state.id }}">{{ state.stateNameLong }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-2">
+            <label for="inputZip2" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="inputZip2">
+          </div>
+          <div class="col-12">
+            <label for="inputParentName2" class="form-label">Parent Names</label>
+            <input type="text" class="form-control" id="inputParentName2">
+          </div>
+          <div class="col-md-6">
+            <label for="inputParentEmail2" class="form-label">Parent Email</label>
+            <input type="email" class="form-control" id="inputParentEmail2" placeholder="mary.smith@email.com">
+          </div>
+          <div class="col-md-6">
+            <label for="inputParentPhone2" class="form-label">Parent Phone</label>
+            <input type="text" class="form-control" id="inputPhone2" placeholder="(987) 654-3210">
+          </div>     
+        </div>
+      </div>
+      <br><br>
+  
+  </form>
+{% endblock content %}

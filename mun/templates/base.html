@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+       MUN Registration
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous">
+    </script>
+    <script>
+     
+        // Check if the checkbox is checked
+        function validateForm() {
+          // check if the checkbox is checked
+          var checkBox = document.getElementById("gridCheck");
+          if (checkBox.checked == false) {
+            // If checkbox is not checked, prevent form submission
+            alert("Please check the AGREE before submitting the form.");
+            return false;
+            }
+          // If checkbox is checked, allow form submission
+          return true;
+        }
+
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          {% load static %}
+          <img src="{% static 'images/MUN.jpg' %}"
+               alt="" width="30" height="24"
+              class="d-inline-block align-text-top" />
+          Model UN
+        </a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+            {% if user.is_authenticated %} 
+              <a class="nav-link" href="{% url 'changepwd' %}">Change Password</a>
+              {%if advisor %}
+                <a class="nav-link" href="{% url 'displayMyDelegation' advisor.id %}">My Delegation</a>
+              {% else %}
+              <a class="nav-link" href="{% url 'createMyDelegation' %}">Create Delegation</a>
+              {% endif %}
+              <a class="nav-link" href="{% url 'logout' %}">Sign Out ({{ user.username }} )</a>
+            {% else %}
+              <a class="nav-link" href="{% url 'login' %}">Sign In</a> 
+              <a class="nav-link" href="{% url 'registrationInd' %}">Registration-Individual</a>
+              <a class="nav-link" href="{% url 'registrationTeam' %}">Registration-Team</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+
+    <footer class="text-center text-lg-start bg-light text-muted mt-4">
+      <div class="text-center p-4">© Copyright - Evelyn Wang
+      </div>
+    </footer>
+  </body>
+</html>

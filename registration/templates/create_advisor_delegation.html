@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div>
+        <div class="card-body">  
+          <h5 class="card-title">Create your delegation</h5>
+
+          <p class="card-text">
+            <form id="advisorForm" action="{% url 'createMyDelegation' %}" method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <!-- print out error message from server -->
+              {% if error %}
+              <div class="alert alert-danger mt-3" role="alert">
+                {{ error }} 
+              </div>
+             {% endif %}
+
+              <!-- select school first -->
+              <div class="container bg-opacity-25">
+                <div class="row g-3">   
+                  <div class="col-md-8">
+                    <label for="name" class="form-label">Please enter your name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group mb-4">
+                      <label for="inputSchool" class="input-group-text">School</label>
+                      <select class="form-select" id="inputSchool" name="school" required>
+                        <option selected>Choose...</option>
+                          {% for school in schools %}
+                          <option value="{{ school.id }}">{{ school.name }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

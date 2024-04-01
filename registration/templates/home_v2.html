@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form>
+    <!-- select school first -->
+    <div class="row">
+      <div class="col">
+        <div class="input-group mb-4">
+          <label for="inputSchool" class="input-group-text">School</label>
+          <select class="form-select" id="inputSchool">
+            <option selected>Choose...</option>
+              {% for school in schools %}
+                <option value="{{ school.id }}">{{ school.name }}</option>
+              {% endfor %}
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- select 10 countries -->
+    <div class="container">
+      <div class="row g-3">   
+        {% for i in index10 %} 
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="inputCountry{{ i }}" >Country Choice {{ i }}</label>
+              <select class="form-select" id="inputCountry{{ i }}">
+                <option selected>Choose...</option>
+                {% for country in countries %}cs
+                  <option value="{{ country.id }}">{{ country.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div> 
+
+
+
+    <!-- instruction #2 -->
+    <br>
+    <div class="container">
+      <div class="text-lg-start lh-sm fs-5 text-wrap fw-bold">
+        <p>
+          Delegations will consist of 4 students. In cases of odd numbers, some countries may have only 3 delegates, however, delegations of 5 are not permitted.
+        </p>
+        <p>
+          NOTE: Please use the following format for phone numbers: (123)SPACE456-7890
+        </p>
+      </div>
+    </div>
+  
+    <!-- deligate intake -->
+    <br>
+    {% for j in index4 %}
+      {% if j == 1 %}
+        <div class="container bg-danger bg-opacity-25">
+      {% elif j == 2 %}
+        <div class="container bg-info bg-opacity-25">
+      {% elif j == 3 %}
+        <div class="container bg-success bg-opacity-25">
+      {% else %}
+        <div class="container bg-warning bg-opacity-25">
+      {% endif %}
+      <div class="row g-3">   
+        <label class="fs-5 fw-bold" bgcolor="secondary">Deligate #{{ j }}</label>
+        <hr>
+        <div class="col-md-6">
+          <label for="inputFirstName{{ j }}" class="form-label">First name</label>
+          <input type="text" class="form-control" id="inputFirstName{{ j }}">
+        </div>
+        <div class="col-md-6">
+          <label for="inputLastName{{ j }}" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="inputLastName{{ j }}">
+        </div>
+        <div class="col-md-3">
+          <label for="inputGender{{ j }}" class="form-label">Gender</label>
+          <select class="form-select" id="inputGender{{ j }}">
+            <option selected>Choose...</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>    
+        <div class="col-md-3">
+          <label for="inputRace{{ j }}" class="form-label">Race</label>
+          <select class="form-select" id="inputRace{{ j }}">
+            <option selected>Choose...</option>
+            {% for race in races %}
+              <option value="{{ race.id }}">{{ race.race }}</option>
+            {% endfor %}
+          </select>
+        </div>    
+        <div class="col-md-3">
+          <label for="inputGrade{{ j }}" class="form-label">Grade</label>
+          <select class="form-select" id="inputGrade{{ j }}">
+            <option selected>Choose...</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+          </select>
+        </div>    
+        <div class="col-md-3">
+          <label for="inputMunYear{{ j }}" class="form-label">Years at MUN</label>
+          <select class="form-select" id="inputMunYear{{ j }}">
+            <option selected>Choose...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="3">4</option>
+          </select>
+        </div>    
+        <div class="col-md-6">
+          <label for="inputEmail1" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail1" placeholder="john.smith@email.com">
+        </div>
+        <div class="col-md-6">
+          <label for="inputPhone{{ j }}" class="form-label">Cell Phone</label>
+          <input type="text" class="form-control" id="inputPhone{{ j }}" placeholder="(123) 456-7890">
+        </div>
+        <div class="col-12">
+          <label for="inputStreetAddr{{ j }}" class="form-label">Address</label>
+          <input type="text" class="form-control" id="inputStreetAddr{{ j }}" placeholder="1234 Main St">
+        </div>
+        <div class="col-md-6">
+          <label for="inputCity{{ j }}" class="form-label">City</label>
+          <input type="text" class="form-control" id="inputCity{{ j }}">
+        </div>
+        <div class="col-md-4">
+          <label for="inputState{{ j }}" class="form-label">State</label>
+          <select class="form-select" id="inputState{{ j }}">
+            <option selected>Choose...</option>
+            {% for state in states %}
+              <option value="{{ state.id }}">{{ state.stateNameLong }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label for="inputZip{{ j }}" class="form-label">Zip</label>
+          <input type="text" class="form-control" id="inputZip{{ j }}">
+        </div>
+        <div class="col-12">
+          <label for="inputParentName{{ j }}" class="form-label">Parent Names</label>
+          <input type="text" class="form-control" id="inputParentName{{ j }}">
+        </div>
+        <div class="col-md-6">
+          <label for="inputParentEmail{{ j }}" class="form-label">Parent Email</label>
+          <input type="email" class="form-control" id="inputParentEmail{{ j}}" placeholder="mary.smith@email.com">
+        </div>
+        <div class="col-md-6">
+          <label for="inputParentPhone{{ j }}" class="form-label">Parent Phone</label>
+          <input type="text" class="form-control" id="inputPhone{{ j }}" placeholder="(987) 654-3210">
+        </div>     
+      </div>
+    </div>
+    <br>
+
+    {% endfor %}
+
+    <!-- Agreement -->
+    <div class="container">
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+          <label class="form-check-label" for="gridCheck">
+            We Agree
+          </label>
+        </div>
+      </div>
+      <div class="text-lg-start lh-sm fs-6 text-wrap fw-bold">
+        By clicking this box, all delegates listed on this registration form certify they will attend Model United Nations and agree to the following <a href="https://tennesseecce.org/Resources/CodeofConduct.pdf">Code of Conduct</a>. Should any delegate choose to withdraw after the Final Deadline, that delegate is responsible for their delegate fee and other school costs or for finding a substitute.
+      </div>
+      <br>
+      <div class="text-lg-start lh-sm fs-3 text-wrap fw-bold">
+        You may need to wait up to 1 minute for your form to process, please do not click submit more than once.
+      </div>      
+      <br>
+      <div class="text-lg-start lh-sm fs-6 text-wrap">
+        Please note, the information contained in this form will be sent for verification to all of the email addresses (parent and student) provided in the form above.
+      </div>
+      <br>
+      <div class="text-lg-start lh-sm fs-6 text-wrap">
+        After pressing submit, scroll up to see if you have incorrectly completed any fields (they will be highlighted in red).
+      </div>
+      <br>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+{% endblock content %}

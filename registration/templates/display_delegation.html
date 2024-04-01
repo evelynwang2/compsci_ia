@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2 class="card-title fw-bold">Delegation Team Information</h2>
+  <br>
+  {% if showSchool %}
+  <h4>School: {{ delegation.school }}</h4>
+  {% endif %}
+  <h4>Assigned Country: {{ delegation.assignedCountry }}</h4>
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="card">
+      <div class="card-body">
+        <p class="card-text fw-bold">Delegate 1</p>
+        <p class="card-test">{{ delegation.team.delegate1.firstName }} {{ delegation.team.delegate1.lastName }}</p>
+        <p class="card-text">Gender: {{ delegation.team.delegate1.gender }}</p>
+        <p class="card-text">Race: {{ delegation.team.delegate1.race }}</p>
+        <p class="card-text">Grade: {{ delegation.team.delegate1.grade }}</p>
+        <p class="card-text">Year at MUN: {{ delegation.team.delegate1.yearAtMun }}</p>
+        <p class="card-text">Address: {{ delegation.team.delegate1.streetAddr }}</p>
+        <p cless="card-text">         {{ delegation.team.delegate1.city }}, {{ delegation.team.delegate1.state }}  {{ delegation.team.delegate1.zip }}</p>
+        <p class="card-text">Phone: {{ delegation.team.delegate1.mobilePhone }}</p>
+        <p class="card-text">Email: {{ delegation.team.delegate1.email }}</p>
+        <p class="card-text">Parent Names: {{ delegation.team.delegate1.parentName }}</p>
+        <p class="card-text">Parent Email: {{ delegation.team.delegate1.parentEmail }}</p>
+        <p class="card-text">Parent Phone: {{ delegation.team.delegate1.parentPhone }}</p> 
+      </div>
+    </div>  
+    <div class="card">
+      <div class="card-body">
+        {% if delegation.team.delegate2 %}
+        <p class="card-text fw-bold">Delegate 2</p>
+        <p class="card-test">Name: {{ delegation.team.delegate2.firstName }} {{ delegation.team.delegate2.lastName }}</p>
+        <p class="card-text">Gender: {{ delegation.team.delegate2.gender }}</p>
+        <p class="card-text">Race: {{ delegation.team.delegate2.race }}</p>
+        <p class="card-text">Grade: {{ delegation.team.delegate2.grade }}</p>
+        <p class="card-text">Year at MUN: {{ delegation.team.delegate2.yearAtMun }}</p>
+        <p class="card-text">Address: {{ delegation.team.delegate2.streetAddr }}</p>
+        <p class="card-text">         {{ delegation.team.delegate2.city }}, {{ delegation.team.delegate2.state }}  {{ delegation.team.delegate2 }}</p>
+        <p class="card-text">Phone: {{ delegation.team.delegate2.mobilePhone }}</p>
+        <p class="card-text">Email: {{ delegation.team.delegate2.email }}</p>
+        <p class="card-text">Parent Names: {{ delegation.team.delegate2.parentName }}</p>
+        <p class="card-text">Parent Email: {{ delegation.team.delegate2.parentEmail }}</p>
+        <p class="card-text">Parent Phone: {{ delegation.team.delegate2.parentPhone }}</p> 
+        {% endif %}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        {% if delegation.team.delegate3 %}
+        <p class="card-text fw-bold">Delegate 3</p>
+        <p class="card-test">Name: {{ delegation.team.delegate3.firstName }} {{ delegation.team.delegate3.lastName }}</p>
+        <p class="card-text">Gender: {{ delegation.team.delegate3.gender }}</p>
+        <p class="card-text">Race: {{ delegation.team.delegate3.race }}</p>
+        <p class="card-text">Grade: {{ delegation.team.delegate3.grade }}</p>
+        <p class="card-text">Year at MUN: {{ delegation.team.delegate3.yearAtMun }}</p>
+        <p class="card-text">Address: {{ delegation.team.delegate3.streetAddr }}</p>
+        <p class="card-text">         {{ delegation.team.delegate3.city }}, {{ delegation.team.delegate3.state }}  {{ delegation.team.delegate3 }}</p>
+        <p class="card-text">Phone: {{ delegation.team.delegate3.mobilePhone }}</p>
+        <p class="card-text">Email: {{ delegation.team.delegate3.email }}</p>
+        <p class="card-text">Parent Names: {{ delegation.team.delegate3.parentName }}</p>
+        <p class="card-text">Parent Email: {{ delegation.team.delegate3.parentEmail }}</p>
+        <p class="card-text">Parent Phone: {{ delegation.team.delegate3.parentPhone }}</p> 
+        {% endif %}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        {% if delegation.team.delegate4 %}
+        <p class="card-text fw-bold">Delegate 4</p>
+        <p class="card-test">Name: {{ delegation.team.delegate4.firstName }} {{ delegation.team.delegate4.lastName }}</p>
+        <p class="card-text">Gender: {{ delegation.team.delegate4.gender }}</p>
+        <p class="card-text">Race: {{ delegation.team.delegate4.race }}</p>
+        <p class="card-text">Grade: {{ delegation.team.delegate4.grade }}</p>
+        <p class="card-text">Year at MUN: {{ delegation.team.delegate4.yearAtMun }}</p>
+        <p class="card-text">Address: {{ delegation.team.delegate4.streetAddr }}</p>
+        <p class="card-text">         {{ delegation.team.delegate4.city }}, {{ delegation.team.delegate4.state }}  {{ delegation.team.delegate4 }}</p>
+        <p class="card-text">Phone: {{ delegation.team.delegate4.mobilePhone }}</p>
+        <p class="card-text">Email: {{ delegation.team.delegate4.email }}</p>
+        <p class="card-text">Parent Names: {{ delegation.team.delegate4.parentName }}</p>
+        <p class="card-text">Parent Email: {{ delegation.team.delegate4.parentEmail }}</p>
+        <p class="card-text">Parent Email: {{ delegation.team.delegate4.parentPhone }}</p> 
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

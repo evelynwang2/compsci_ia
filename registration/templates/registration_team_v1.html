@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="card mb-3">
+    <div class="row g-0">
+      <div>
+        <div class="card-body">  
+          <h5 class="card-title">MUN A General Assembly Registration Form - Team</h5>
+
+          <p class="card-text">
+            <form id="teamForm" action="{% url 'registrationTeam' %}" method="post" onsubmit="return validateForm()">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <!-- print out error message from server -->
+              {% if error %}
+              <div class="alert alert-danger mt-3" role="alert">
+                {{ error }} 
+              </div>
+                
+                {% for e in errors %}
+                  <div class="alert alert-danger mt-3" role="alert">
+                    {{ e }} is required
+                  </div>
+                {% endfor %}
+             {% endif %}
+
+              <!-- instruction #1 -->
+              <div class="container">
+                <div class="text-lg-start lh-sm fs-6 text-wrap">
+                  <p>
+                    Please only submit one form per team. You must have all of your team members' information before you can fill out this form. Please provide valid email addresses or you will be unable to complete the registration process.
+                  </p>
+                </div>
+              </div>
+
+              <!-- select school first -->
+              <div class="card mb-3">
+                <div class="row g-0">
+                  <div class="col-md-6">
+                    <div class="input-group mb-4">
+                      <label for="inputSchool" class="input-group-text">School</label>
+                      <select class="form-select" id="inputSchool" name="school" required>
+                        <option selected>Choose...</option>
+                          {% for school in schools %}
+                          <option value="{{ school.id }}">{{ school.name }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- delegates, up to 4-->
+              <!-- instruction #2 -->
+              <input type="hidden" id="delegateCount" name="delegateCount" value="0">
+              <br>
+              <div class="container">
+                <div class="text-lg-start lh-sm fs-6 text-wrap fw-bold">
+                  <p>
+                    Delegations will consist of 4 students. In cases of odd numbers, some countries may have only 3 delegates, however, delegations of 5 are not permitted.
+                  </p>
+                  <p>
+                    NOTE: Please use the following format for phone numbers: (123)SPACE456-7890
+                  </p>
+                </div>
+              </div>
+           
+              <div id="delegates">
+                <!-- Delegate form field will be added here dynamicall-->
+              </div>
+              <br>
+              <button id="addDelegateBtn" type="button" class="btn btn-secondary">Add Delegate</button>
+              <br>
+
+              <!-- instruction #3 -->
+              <br>
+              <div class="container">
+                <div class="text-lg-start lh-sm fs-6 text-wrap fw-bold">
+                  <p>
+                    Please rank your country preference in order, with 1 being your first choice. Countries will be assigned at random based upon your preferences. If you fail to list all 10 choices, you may not be automatically assigned a country.
+                  </p>
+                  <p>
+                    You will receive your country assignment via email in the days following registration. If all of your choices have already been taken during the assignment process, you will receive an email with instructions to choose additional countries. Please make sure you check your spam folders for these emails.
+                  </p>
+                </div>
+              </div>
+
+              <input type="hidden" id="countryCount" name="countryCount" value="0">
+              <div id="countries">
+                <!-- Delegate form field will be added here dynamicall-->
+              </div>
+              <br>
+              <button id="addCountryBtn" type="button" class="btn btn-secondary">Add Country</button>
+              <br>
+
+              <!-- Agreement -->
+              <br>
+              <div class="container">
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" name="gridCheck" required>
+                    <label class="form-check-label" for="gridCheck">
+                      We Agree
+                    </label>
+                  </div>
+                </div>
+                <div class="text-lg-start lh-sm fs-6 text-wrap fw-bold">
+                  By clicking this box, all delegates listed on this registration form certify they will attend Model United Nations and agree to the following <a href="https://tennesseecce.org/Resources/CodeofConduct.pdf">Code of Conduct</a>. Should any delegate choose to withdraw after the Final Deadline, that delegate is responsible for their delegate fee and other school costs or for finding a substitute.
+                </div>
+                <br>
+                <div class="text-lg-start lh-sm fs-3 text-wrap fw-bold">
+                  You may need to wait up to 1 minute for your form to process, please do not click submit more than once.
+                </div>      
+                <br>
+                <div class="text-lg-start lh-sm fs-6 text-wrap">
+                  Please note, the information contained in this form will be sent for verification to all of the email addresses (parent and student) provided in the form above.
+                </div>
+                <br>
+                <div class="text-lg-start lh-sm fs-6 text-wrap">
+                  After pressing submit, scroll up to see if you have incorrectly completed any fields (they will be highlighted in red).
+                </div>
+                <br>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+            </form>
+            <!-- JavaScript code to handle dynamic form fields  -->
+            <script>
+              // JavaScript code here
+              document.addEventListener('DOMContentLoaded', function () {
+                const addDelegateBtn = document.getElementById('addDelegateBtn');
+                const delegatesDiv = document.getElementById('delegates');
+                const delegateCountInput = document.getElementById('delegateCount')
+                const maxDelegate = 4;
+                const colors = ['bg-info', 'bg-success', 'bg-warning', 'bg-danger'];
+
+                let delegateCount = 1;
+
+                addDelegateBtn.addEventListener('click', function () {
+                  if (delegateCount <= maxDelegate) {
+                    const delegateDiv = document.createElement('div');
+                    delegateDiv.classList.add('delegate');
+                    const colorIndex = (delegateCount - 1) % colors.length; // Adjusting index to start from 0
+                    const containerColor = colors[colorIndex];
+
+                    delegateDiv.innerHTML = `
+                        <div class="container ${containerColor} bg-opacity-25" id="deligate${delegateCount}">
+                          <br>  
+                          <h5>Delegate ${delegateCount}</h5>
+                          <br>
+                          <div class="row g-3"> 
+                            <div class="col-md-6">
+                              <label for="inputFirstName${delegateCount}" class="form-label">First name</label>
+                              <input type="text" class="form-control" id="inputFirstName${delegateCount}" name="fname${delegateCount}" required>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputLastName${delegateCount}" class="form-label">Last name</label>
+                              <input type="text" class="form-control" id="inputLastName${delegateCount}" name="lname${delegateCount}" required>
+                            </div>
+                            <div class="col-md-3">
+                              <label for="inputGender${delegateCount}" class="form-label">Gender</label>
+                              <select class="form-select" id="inputGender${delegateCount}" name="gender${delegateCount}" required>
+                                <option selected>Choose...</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                              </select>
+                            </div>    
+                            <div class="col-md-3">
+                              <label for="inputRace${delegateCount}" class="form-label">Race</label>
+                              <select class="form-select" id="inputRace${delegateCount}" name="race${delegateCount}" required>
+                                <option selected>Choose...</option>
+                                {% for race in races %}
+                                <option value="{{ race.id }}">{{ race.race }}</option>
+                                {% endfor %}
+                              </select>
+                            </div>    
+                            <div class="col-md-3">
+                              <label for="inputGrade${delegateCount}" class="form-label">Grade</label>
+                              <select class="form-select" id="inputGrade${delegateCount}" name="grade${delegateCount}" required>
+                                <option selected>Choose...</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                              </select>
+                            </div>   
+                            <div class="col-md-3">
+                              <label for="inputMunYear${delegateCount}" class="form-label">Years at MUN</label>
+                              <select class="form-select" id="inputMunYear${delegateCount}" name="munYear${delegateCount}" required>
+                                <option selected>Choose...</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="3">4</option>
+                              </select>
+                            </div>   
+                            <div class="col-md-6">
+                              <label for="inputEmail1${delegateCount}" class="form-label">Email</label>
+                              <input type="email" class="form-control" id="inputEmail1${delegateCount}" name="email${delegateCount}" required>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputPhone${delegateCount}" class="form-label">Cell Phone</label>
+                              <input type="text" class="form-control" id="inputPhone${delegateCount}" name="phone${delegateCount}" placeholder="(123) 456-7890" required>
+                            </div>
+                            <div class="col-12">
+                              <label for="inputStreetAddr${delegateCount}" class="form-label">Address</label>
+                              <input type="text" class="form-control" id="inputStreetAddr${delegateCount}" name="addr${delegateCount}" requried>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputCity${delegateCount}" class="form-label">City</label>
+                              <input type="text" class="form-control" id="inputCity${delegateCount}" name="city${delegateCount}" required>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="inputState${delegateCount}" class="form-label">State</label>
+                              <select class="form-select" id="inputState${delegateCount}" name="state${delegateCount}" required>
+                                <option selected>Choose...</option>
+                                {% for state in states %}
+                                <option value="{{ state.id }}">{{ state.stateNameLong }}</option>
+                                {% endfor %}
+                              </select>
+                            </div>
+                            <div class="col-md-2">
+                              <label for="inputZip${delegateCount}" class="form-label">Zip</label>
+                              <input type="text" class="form-control" id="inputZip${delegateCount}" name="zip${delegateCount}" requried>
+                            </div>
+                            <div class="col-12">
+                              <label for="inputParentName${delegateCount}" class="form-label">Parent Names</label>
+                              <input type="text" class="form-control" id="inputParentName${delegateCount}" name="parentName${delegateCount}" required>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputParentEmail${delegateCount}" class="form-label">Parent Email</label>
+                              <input type="email" class="form-control" id="inputParentEmail${delegateCount}" name="parentEmail${delegateCount}" requried>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="inputParentPhone${delegateCount}" class="form-label">Parent Phone</label>
+                              <input type="text" class="form-control" id="inputParentPhone${delegateCount}" name="parentPhone${delegateCount}" placeholder="(987) 654-3210" requried>
+                            </div>   
+                            <br>
+                          </div>                        
+                        </div>
+                     
+                        `;
+                    delegatesDiv.appendChild(delegateDiv);
+                    delegateCountInput.value = delegateCount;
+                    delegateCount++;
+                  } else {
+                    alert('You have reacched the maxium number of delegates.');
+                  }
+                });
+              });
+
+              document.addEventListener('DOMContentLoaded', function () {
+                const addCountryBtn = document.getElementById('addCountryBtn');
+                const countriesDiv = document.getElementById('countries');
+                const countryCountInput = document.getElementById('countryCount');
+                const maxCountries = 10; // Maximum number of countries allowed
+
+                let countryCount = 1;
+
+                addCountryBtn.addEventListener('click', function () {
+                  if (countryCount <= maxCountries) {
+                    const countryDiv = document.createElement('div');
+                    countryDiv.classList.add('country');
+
+                    // Add input fields or select dropdown for country information
+                    countryDiv.innerHTML = `
+                        <div class="container">
+                          <div class="row g-3">   
+                            <div class="col-md-6">
+                              <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputCountry${countryCount}" >Country Choice ${countryCount}</label>
+                                <select class="form-select" id="inputCountry${countryCount}" name="inputCountry${countryCount}">
+                                  <option selected>Choose...</option>
+                                  {% for country in countries %}cs
+                                  <option value="{{ country.id }}">{{ country.name }}</option>
+                                  {% endfor %}
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Add your input/select fields for country information here -->
+                    `;
+
+                    countriesDiv.appendChild(countryDiv);
+                    countryCountInput.value = countryCount; // Update the countryCount value in the hidden input field
+                    countryCount++;
+                  } else {
+                    alert('You can only select up to 10 countries.');
+                 }
+                });
+              });
+            </script>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
