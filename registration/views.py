@@ -202,7 +202,7 @@ def registrationTeam(request):
 
         countryCount = int(request.POST.get('countryCount', 0))
         if countryCount == 0:
-            # If no delegate information is provided, show error message
+            # If no country information is provided, show error message
             return render(request, 'registration_team.html', {
                 'schools': schools, 
                 'countries': countries,
