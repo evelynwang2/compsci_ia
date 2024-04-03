@@ -11,8 +11,11 @@ python -m venv munenv
 munenv\Scripts\activate
 # macOS and Linux
 source munenv/bin/activate
+
 Step 2: Install Dependencies
 pip install django==4.0
+
 Step 3: Generate the requirements.txt File
 pip freeze > requirements.txt
+
 Step 4: Review your requirement.txt file
