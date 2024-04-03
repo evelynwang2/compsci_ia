@@ -21,7 +21,7 @@ def home(request):
     else:
       return render(request, 'home.html')
 
-# display a delegate details
+# display a delegate's details
 def displayDelegate(request, delegate_id):
     delegate = get_object_or_404(Delegate, pk=delegate_id)
     return render(request, 'display_delegate.html'
@@ -69,7 +69,7 @@ def validateIndInput(request):
     inputRaceId = request.POST.get('race')
     inputStateId = request.POST.get('state')
     
-    # 'Choose... is defaul choice of option input fields
+    # 'Choose... is default choice of option input fields
     # (123) 456-7890 is place holder of delegate mobile phone
     # (987) 65403210 is place holder of delegate parent's phone
     if not inputSchoolId or inputSchoolId == 'Choose...':
@@ -136,7 +136,7 @@ def registrationInd(request):
                                    }) 
             """
         
-        # for forigne key columns, get instance of school, race and state
+        # for foreign key columns, get instance of school, race and state
         inputSchool = School.objects.get(id=inputSchoolId)
         inputRace = Race.objects.get(id=inputRaceId)
         inputState = State.objects.get(id=inputStateId)
@@ -174,7 +174,6 @@ def registrationInd(request):
 # create a team         
 def registrationTeam(request):
     schools = School.objects.all().order_by('name')
-    ## countries = Country.objects.all()
     countries = getUnassignedCountries()
     races = Race.objects.all().order_by('race')
     states = State.objects.all().order_by('stateNameLong')
@@ -264,14 +263,13 @@ def registrationTeam(request):
                  'error': errors
             })
     
-        # Process the registration
-        # Your registration logic here...
+        # Process the registration, regstration logic goes here
         try:
             delegates = []
             for attrs in inputDelegateAttrs:
                 inputRace = Race.objects.get(id=attrs['race'])
                 inputState = State.objects.get(id=attrs['state'])
-
+                
                 newDelegate = Delegate.objects.create(
                     firstName=attrs['fname'],
                     lastName=attrs['lname'],
