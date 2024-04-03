@@ -263,7 +263,7 @@ def registrationTeam(request):
                  'error': errors
             })
     
-        # Process the registration, regstration logic goes here
+        # Process the registration, regstration logic
         try:
             delegates = []
             for attrs in inputDelegateAttrs:
