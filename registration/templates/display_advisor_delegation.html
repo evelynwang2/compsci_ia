@@ -9,6 +9,7 @@
       <div class="card-text">
         <ul class="'list-group">
         {% if teamCount > 0 %}
+          <!-- if there are teams, display the country asisgned to the team, and display the link to each delegates -->
           {% for delegation in teams %}
             <p>Team {{ forloop.counter }}: {{delegation.assignedCountry}}</p>
             <!-- to update team assigned countries              
@@ -24,17 +25,22 @@
               </div>
               -->
             <li class="list-group-item">
-              <a href="{% url 'displayDelegate' delegation.team.delegate1.id %}">{{delegation.team.delegate1.firstName}} {{delegation.team.delegate1.lastName}}</a>
+              <!-- create an anchor to display_delegate.html -->
+              <a href="{% url 'displayDelegate' delegation.team.delegate1.id %}">{{delegation.team.delegate1.firstName}} 
+              {{delegation.team.delegate1.lastName}}</a>
             </li>
-            {% if delegation.team.delegate2 %}
+            {% if delegation.team.delegate2 %}. 
+              <!-- if 2nd delegate existis in the team -->
             <li class="list-group-item">
               <a href="{% url 'displayDelegate' delegation.team.delegate2.id %}">{{delegation.team.delegate2.firstName}} {{delegation.team.delegate2.lastName}}</a>
             </li>
               {% if delegation.team.delegate3 %}
+              <!-- if the 3rd delegate exists in the team -->
             <li class="list-group-item">
               <a href="{% url 'displayDelegate' delegation.team.delegate3.id %}">{{delegation.team.delegate3.firstName}} {{delegation.team.delegate3.lastName}}</a>
             </li>
                 {% if delegation.team.delegate4 %}
+                <!-- if the 4th delegate exists in the team --> 
             <li class="list-group-item"><a href="{% url 'displayDelegate' delegation.team.delegate4.id %}">{{delegation.team.delegate4.firstName}} {{delegation.team.delegate4.lastName}}</a>
             </li>
                 {% endif %}
@@ -54,6 +60,7 @@
         <ul class="'list-group">
         {% if invidualCount %}
           {% for delegate in individuals%}
+          <!-- if invididuals exists, loop the list to create an anchor of display_delegate.html--> 
           <li class="list-group-item">
             <a href="{% url 'displayDelegate' delegate.id %}">{{ delegate.firstName }} {{ delegate.lastName }} - {{ delegate.role }}</a>            </li>
           {% endfor %}

@@ -31,7 +31,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   
+
   <body>
+    <!-- display the navar in the base.html, so that every page with same style menu -->
+    <!-- this is dynamic menu based on the user -->
+    <!-- for non-user, display home, registration ind, registration team --> 
+    <!-- for signed in user, display home, change password, create delegation/my delegation, sign out-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
       <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">
@@ -53,14 +58,18 @@
           <div class="navbar-nav ms-auto">
             <a class="nav-link" href="{% url 'home' %}">Home</a>
             {% if user.is_authenticated %} 
+              <!-- if the user signed in -->
               <a class="nav-link" href="{% url 'changepwd' %}">Change Password</a>
               {%if advisor %}
+                <!-- if the advisor has associated with a school --> 
                 <a class="nav-link" href="{% url 'displayMyDelegation' advisor.id %}">My Delegation</a>
               {% else %}
+                <!-- if the advisor has not associated with a school --> 
               <a class="nav-link" href="{% url 'createMyDelegation' %}">Create Delegation</a>
               {% endif %}
               <a class="nav-link" href="{% url 'logout' %}">Sign Out ({{ user.username }} )</a>
             {% else %}
+              <!-- if the user not signed in -->
               <a class="nav-link" href="{% url 'login' %}">Sign In</a> 
               <a class="nav-link" href="{% url 'registrationInd' %}">Registration-Individual</a>
               <a class="nav-link" href="{% url 'registrationTeam' %}">Registration-Team</a>

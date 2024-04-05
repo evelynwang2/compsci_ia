@@ -27,6 +27,7 @@
     <div class="card">
       <div class="card-body">
         {% if delegation.team.delegate2 %}
+        <!-- unlike delegate1, delegate 2, 3, 4 are optional, so check whether it is defined -->
         <p class="card-text fw-bold">Delegate 2</p>
         <p class="card-test">Name: {{ delegation.team.delegate2.firstName }} {{ delegation.team.delegate2.lastName }}</p>
         <p class="card-text">Gender: {{ delegation.team.delegate2.gender }}</p>

@@ -52,6 +52,7 @@
               <!-- delegates, up to 4-->
               <!-- instruction #2 -->
               <input type="hidden" id="delegateCount" name="delegateCount" value="0">
+              <!-- hidden variable delegateCount to tell the server how many delegates of this team -->
               <br>
               <div class="container">
                 <div class="text-lg-start lh-sm fs-6 text-wrap fw-bold">
@@ -64,6 +65,7 @@
                 </div>
               </div>
            
+
               <div id="delegates">
                 <!-- Delegate form field will be added here dynamicall-->
               </div>
@@ -84,6 +86,7 @@
                 </div>
               </div>
 
+              <!-- hidden variable countryCount to tell the server how many countries are selected -->
               <input type="hidden" id="countryCount" name="countryCount" value="0">
               <div id="countries">
                 <!-- Delegate form field will be added here dynamicall-->
@@ -126,7 +129,12 @@
             </form>
             <!-- JavaScript code to handle dynamic form fields  -->
             <script>
-              // JavaScript code here
+              // to add a event listener of the buttoen "addDelgateBtn"
+              // tracking how many times the button is clicked
+              // once it is clicked, display the delegation form
+              //      assign the tracking number to hidden var delegateCount
+              //      increment the tracking number by 1
+              // the max number it can be clicked is 4
               document.addEventListener('DOMContentLoaded', function () {
                 const addDelegateBtn = document.getElementById('addDelegateBtn');
                 const delegatesDiv = document.getElementById('delegates');
@@ -249,6 +257,9 @@
                 });
               });
 
+              // am event listener to listen addCountryBtn
+              // just like the addDelegateBtn
+              // max clicks allowed = 10
               document.addEventListener('DOMContentLoaded', function () {
                 const addCountryBtn = document.getElementById('addCountryBtn');
                 const countriesDiv = document.getElementById('countries');
