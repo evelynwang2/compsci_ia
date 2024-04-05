@@ -11,6 +11,7 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+#works with the asgi to ge the website to run
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mun.settings')
 
 application = get_wsgi_application()
