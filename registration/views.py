@@ -21,7 +21,7 @@ def home(request):
     else:
       return render(request, 'home.html')
 
-# display a delegate details
+# display a delegate's details
 def displayDelegate(request, delegate_id):
     delegate = get_object_or_404(Delegate, pk=delegate_id)
     return render(request, 'display_delegate.html'
@@ -71,6 +71,7 @@ def validateIndInput(request):
     inputRaceId = request.POST.get('race')
     inputStateId = request.POST.get('state')
     
+
     # 'Choose... is defaul choice of option input fields
     #    such as school, race, state, role, gender, race
     # (123) 456-7890 is place holder of delegate mobile phone
@@ -207,7 +208,6 @@ def registrationTeam(request):
     # extract the sorted lists of schools, unassigned countries, races and states
     # for registration_team.html
     schools = School.objects.all().order_by('name')
-    ## countries = Country.objects.all()
     countries = getUnassignedCountries()
     races = Race.objects.all().order_by('race')
     states = State.objects.all().order_by('stateNameLong')
@@ -242,7 +242,7 @@ def registrationTeam(request):
         # check: the count of selected countries >= 1
         countryCount = int(request.POST.get('countryCount', 0))
         if countryCount == 0:
-            # If no delegate information is provided, show error message
+            # If no country information is provided, show error message
             return render(request, 'registration_team.html', {
                 'schools': schools, 
                 'countries': countries,
@@ -335,7 +335,7 @@ def registrationTeam(request):
             for attrs in inputDelegateAttrs:
                 inputRace = Race.objects.get(id=attrs['race'])
                 inputState = State.objects.get(id=attrs['state'])
-
+                
                 newDelegate = Delegate.objects.create(
                     firstName=attrs['fname'],
                     lastName=attrs['lname'],
