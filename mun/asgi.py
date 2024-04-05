@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/4.0/howto/deployment/asgi/
 import os
 
 from django.core.asgi import get_asgi_application
-
+#allows for the 'app' to be hosted
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mun.settings')
 
 application = get_asgi_application()
