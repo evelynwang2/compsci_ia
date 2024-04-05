@@ -5,7 +5,7 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
+    #allowing people to add country choices, and entering them into the database with a date
     dependencies = [
         ('registration', '0002_country_numallowed'),
     ]
