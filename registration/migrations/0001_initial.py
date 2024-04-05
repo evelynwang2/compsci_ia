@@ -10,6 +10,7 @@ class Migration(migrations.Migration):
     dependencies = [
     ]
 
+    #constructors for the countries
     operations = [
         migrations.CreateModel(
             name='Country',
@@ -18,6 +19,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=100)),
             ],
         ),
+    #essentially constructors for different delegates
         migrations.CreateModel(
             name='Delegate',
             fields=[
@@ -38,6 +40,7 @@ class Migration(migrations.Migration):
                 ('yearAtMun', models.SmallIntegerField()),
             ],
         ),
+        #constructors for delegation
         migrations.CreateModel(
             name='Delegation',
             fields=[
@@ -48,6 +51,7 @@ class Migration(migrations.Migration):
                 ('delegateId4', models.IntegerField()),
             ],
         ),
+        #constructors for race
         migrations.CreateModel(
             name='Race',
             fields=[
@@ -55,6 +59,7 @@ class Migration(migrations.Migration):
                 ('race', models.CharField(max_length=30)),
             ],
         ),
+        #constructor for model
         migrations.CreateModel(
             name='Registry',
             fields=[
@@ -63,6 +68,7 @@ class Migration(migrations.Migration):
                 ('countryId', models.SmallIntegerField()),
             ],
         ),
+        #constructors states
         migrations.CreateModel(
             name='State',
             fields=[
