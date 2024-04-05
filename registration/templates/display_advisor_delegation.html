@@ -29,7 +29,7 @@
               <a href="{% url 'displayDelegate' delegation.team.delegate1.id %}">{{delegation.team.delegate1.firstName}} 
               {{delegation.team.delegate1.lastName}}</a>
             </li>
-            {% if delegation.team.delegate2 %}. 
+            {% if delegation.team.delegate2 %}
               <!-- if 2nd delegate existis in the team -->
             <li class="list-group-item">
               <a href="{% url 'displayDelegate' delegation.team.delegate2.id %}">{{delegation.team.delegate2.firstName}} {{delegation.team.delegate2.lastName}}</a>
