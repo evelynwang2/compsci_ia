@@ -10,7 +10,13 @@ from django.contrib.auth.decorators import login_required
 from registration.models import Advisor
 from django.http import HttpResponse
 
-# Create your views here.
+# when the user to log in
+# corresponding teamp: login.html
+# for GET: render login.html with Django AuthenticationForm
+# for POST: 
+#   call Django authenticate function
+#   after authentcation, check whether the user is an Advisor using user
+#   redirect to home.html
 def loginAccount(request):
 
     if request.method == 'GET':
@@ -39,6 +45,15 @@ def logoutAccount(request):
     logout(request)
     return redirect('home')
 
+# for logged in user, allow to change password
+# corresponding template: change_password.html
+# for GET: render change_password.html with userPassordChangeForm
+# for POST
+#   check new password matches confirmation new password
+#   check the userPasswordChangeForm
+#   update user password
+#   if any errors, render change_password.html 
+#   if success, redirect to password_changed.html
 @login_required
 def changePassword(request):
     if request.method == 'POST':
