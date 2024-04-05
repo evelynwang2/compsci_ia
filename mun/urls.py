@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include 
 from registration import views as regViews
 
+#different patterns acessible in the local server
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', regViews.home, name='home'),
