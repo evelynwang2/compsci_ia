@@ -8,7 +8,6 @@ class Migration(migrations.Migration):
     dependencies = [
         ('registration', '0001_initial'),
     ]
-#When adding a new country you can alter how many times a country can be assgined, like there could be 2 Netherlands
     operations = [
         migrations.AddField(
             model_name='country',
